@@ -1,0 +1,10 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title> Кухня — рецепты</title><style>
+*{box-sizing:border-box;margin:0}body{font:17px/1.5 'Trebuchet MS',sans-serif;background:#fff7ef;color:#3b2417;padding:20px;max-width:620px;margin:auto}
+h1{color:#c2410c}select{width:100%;padding:12px;margin:14px 0;font:inherit;border-radius:10px;border:2px solid #f0c9a8}
+.p{display:flex;align-items:center;gap:12px;margin:10px 0}.p button{width:38px;height:38px;border-radius:50%;border:0;background:#c2410c;color:#fff;font-size:20px}
+li{padding:6px 0;border-bottom:1px dashed #e8c9ad;list-style:none}ol{padding-left:20px;margin-top:8px}
+</style></head><body><h1>Кухня</h1><select id=s onchange=r()></select><div class=p>Порции: <button onclick=p(-1)>−</button><b id=n>2</b><button onclick=p(1)>+</button></div><ul id=i></ul><h3>Приготовление</h3><ol id=o></ol><script>
+var R=[{t:"Блины",b:2,i:[["Молоко, мл",300],["Мука, г",150],["Яйца, шт",2],["Сахар, г",20]],s:["Взбейте яйца с сахаром","Добавьте молоко и муку","Жарьте по минуте с каждой стороны"]},{t:"Паста с томатами",b:2,i:[["Спагетти, г",200],["Помидоры, г",400],["Чеснок, зубчики",2],["Оливковое масло, мл",30]],s:["Отварите пасту","Обжарьте чеснок и помидоры","Смешайте и подавайте"]},{t:"Овсяная каша",b:1,i:[["Хлопья, г",50],["Молоко, мл",200],["Мёд, г",10]],s:["Доведите молоко до кипения","Добавьте хлопья на 5 минут","Подсластите мёдом"]}],N=2;
+s.innerHTML=R.map(function(x,k){return '<option value='+k+'>'+x.t+'</option>'}).join('');
+function r(){var x=R[s.value];n.textContent=N;i.innerHTML=x.i.map(function(a){return '<li>'+a[0]+': <b>'+Math.round(a[1]*N/x.b*10)/10+'</b></li>'}).join('');o.innerHTML=x.s.map(function(a){return '<li>'+a+'</li>'}).join('')}
+function p(d){N=Math.max(1,N+d);r()}r()</script></body></html>

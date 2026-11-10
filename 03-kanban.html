@@ -1,0 +1,10 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title> TaskFlow — доска задач</title><style>
+*{box-sizing:border-box;margin:0}body{font:16px system-ui,sans-serif;background:#e9edf2;color:#1b2430;padding:20px}h1{margin-bottom:12px}
+form{display:flex;gap:8px;margin-bottom:16px}input{flex:1;padding:10px;border:1px solid #b8c2cf;border-radius:6px;font:inherit}
+button{padding:8px 12px;border:0;border-radius:6px;background:#2f6fed;color:#fff;cursor:pointer;font:inherit}
+#b{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.col{background:#d6dde6;border-radius:10px;padding:12px;min-height:200px}
+.col h3{margin-bottom:10px}.k{background:#fff;padding:10px;border-radius:8px;margin-bottom:8px;box-shadow:0 1px 3px #0003}.k div{margin-top:8px;display:flex;gap:6px}.k button{background:#e9edf2;color:#1b2430;padding:3px 9px}
+</style></head><body><h1>TaskFlow</h1><form onsubmit="a(event)"><input id=i placeholder="Новая задача" required><button>Добавить</button></form><div id=b></div><script>
+var C=["К выполнению","В работе","Готово"],T=JSON.parse(localStorage.t||'[["Сделать макет",0],["Написать код",1],["Выложить на GitHub",2]]');
+function r(){localStorage.t=JSON.stringify(T);b.innerHTML=C.map(function(c,j){return '<div class=col><h3>'+c+' ('+T.filter(function(t){return t[1]==j}).length+')</h3>'+T.map(function(t,n){return t[1]!=j?'':'<div class=k>'+t[0].replace(/</g,'&lt;')+'<div>'+(j>0?'<button onclick=m('+n+',-1)>←</button>':'')+(j<2?'<button onclick=m('+n+',1)>→</button>':'')+'<button onclick=x('+n+')>✕</button></div></div>'}).join('')+'</div>'}).join('')}
+function a(e){e.preventDefault();T.push([i.value,0]);i.value='';r()}function m(n,d){T[n][1]+=d;r()}function x(n){T.splice(n,1);r()}r()</script></body></html>

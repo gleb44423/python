@@ -1,0 +1,11 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title> Кофейня «Зерно» — меню и заказ</title><style>
+*{box-sizing:border-box;margin:0}body{font:17px/1.5 Georgia,serif;background:#2b1d14;color:#f3e3d0;padding:20px;max-width:700px;margin:auto}
+h1{font-size:2.4rem}.m{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #5a4030}.m small{color:#c0a58a;display:block}
+button{background:#d9a05b;border:0;padding:8px 14px;border-radius:6px;font:inherit;cursor:pointer;color:#2b1d14}
+#c{position:sticky;bottom:10px;background:#f3e3d0;color:#2b1d14;border-radius:12px;padding:14px;margin-top:20px}#c li{list-style:none;display:flex;justify-content:space-between}
+</style></head><body><h1>Кофейня «Зерно»</h1><p>Свежая обжарка, выпечка каждое утро</p><div id=m></div><div id=c></div><script>
+var M=[["Эспрессо","30 мл, плотный вкус",150],["Капучино","Молочная пена, 250 мл",230],["Флэт уайт","Двойной эспрессо с молоком",260],["Раф с лавандой","Сливки и ваниль",310],["Круассан","С миндальным кремом",180],["Чизкейк","Классический",290]],K={};
+m.innerHTML=M.map(function(x,i){return '<div class=m><div>'+x[0]+'<small>'+x[1]+'</small></div><div>'+x[2]+' ₽ <button onclick=a('+i+')>+</button></div></div>'}).join('');
+function a(i){K[i]=(K[i]||0)+1;r()}function d(i){K[i]--;if(!K[i])delete K[i];r()}
+function r(){var t=0,h=Object.keys(K).map(function(i){t+=M[i][2]*K[i];return '<li>'+M[i][0]+' × '+K[i]+' <span>'+M[i][2]*K[i]+' ₽ <button onclick=d('+i+')>−</button></span></li>'}).join('');
+c.innerHTML=h?'<b>Ваш заказ</b>'+h+'<hr><b>Итого: '+t+' ₽</b> <button onclick="K={};r();alert(\'Заказ принят! Ждём вас.\')">Оформить</button>':'Корзина пуста. Добавьте напиток из меню.'}r()</script></body></html>
